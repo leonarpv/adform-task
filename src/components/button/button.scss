@@ -1,0 +1,23 @@
+@import 'src/styles/variables';
+
+.button {
+    background-color: $color-primary;
+    border: none;
+    color: $color-text-inverse;
+    cursor: pointer;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 20px;
+    outline: none;
+
+    &--secondary {
+        background-color: $color-background-1;
+        color: $color-text-1;
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

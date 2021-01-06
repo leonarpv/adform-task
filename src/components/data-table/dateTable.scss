@@ -1,0 +1,46 @@
+@import 'src/styles/variables';
+
+.data-table {
+    border-collapse: collapse;
+    cursor: default;
+    position: relative;
+    table-layout: fixed;
+    width: 100%;
+
+    &__cell {
+        border: none;
+        padding: 8px 6px;
+        text-align: left;
+
+        &--head {
+            background-color: $color-primary;
+            color: $color-text-inverse;
+            font-weight: normal;
+            position: sticky;
+            top: 0;
+        }
+    }
+
+    &__empty-content {
+        color: $color-text-1;
+        height: 200px;
+        text-align: center;
+    }
+
+    &__row {
+        border-bottom: 1px solid $color-background-3;
+        color: $color-text-1;
+
+        &:nth-of-type(even) {
+            background-color: $color-background-2;
+        }
+
+        &:last-of-type {
+            border-bottom: 2px solid $color-primary;
+        }
+
+        &:hover {
+            color: $color-text-2;
+        }
+    }
+}

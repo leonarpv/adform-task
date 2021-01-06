@@ -1,0 +1,17 @@
+@import 'src/styles/variables';
+
+.campaign-search {
+    padding: 30px;
+
+    &__date-pickers {
+        & > * {
+            margin-right: 15px;
+        }
+    }
+
+    &__inputs {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

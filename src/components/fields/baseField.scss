@@ -1,0 +1,28 @@
+@import 'src/styles/variables';
+
+.base-field {
+    $this: &;
+
+    color: $color-primary;
+    display: inline-block;
+    position: relative;
+    padding: 10px 0;
+
+    &__error {
+        color: $color-error;
+        font-size: 12px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    &__label {
+        margin-right: 15px;
+    }
+
+    &--errored {
+        #{$this}__label {
+            color: $color-error;
+        }
+    }
+}
