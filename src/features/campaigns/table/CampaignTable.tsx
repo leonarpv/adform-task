@@ -13,7 +13,7 @@ type Props = {
     campaignsStatus: LoadingStatus
 }
 
-const columns: ColumnDefinition<CampaignWithUser>[] = [
+export const columns: ColumnDefinition<CampaignWithUser>[] = [
     {
         title: 'Name',
         accessor: (c) => c.name,

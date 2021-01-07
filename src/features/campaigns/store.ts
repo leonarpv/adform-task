@@ -11,7 +11,7 @@ import { filterCampaigns, validateCampaignData } from './utils'
 
 type CampaignUserMap = { [key: number]: CampaignUser }
 
-interface CampaignsState {
+export type CampaignsState = {
     campaigns: CampaignWithUser[]
     campaignsFiltered: CampaignWithUser[]
     campaignsStatus: LoadingStatus

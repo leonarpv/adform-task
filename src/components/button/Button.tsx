@@ -9,7 +9,7 @@ type Props = DetailedHTMLProps<
     secondary?: boolean
 }
 
-const Input = ({ secondary, ...rest }: Props) => {
+const Button = ({ secondary, ...rest }: Props) => {
     const className = classNames('button', {
         'button--secondary': secondary,
     })
@@ -17,4 +17,4 @@ const Input = ({ secondary, ...rest }: Props) => {
     return <button className={className} {...rest} />
 }
 
-export default Input
+export default Button

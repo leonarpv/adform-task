@@ -17,6 +17,10 @@
         color: $color-text-1;
     }
 
+    &:focus {
+        opacity: 0.9;
+    }
+
     &:hover {
         opacity: 0.9;
     }

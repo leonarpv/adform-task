@@ -1,5 +1,8 @@
 import React from 'react'
-import { useFailedLoadingToast, useSuccessLoadingToast } from 'core/loading'
+import {
+    useFailedLoadingToast,
+    useSuccessLoadingToast,
+} from 'core/hooks/alerts'
 import CampaignTable from './table/CampaignTable'
 import CampaignSearch from './search/CampaignSearch'
 import { Campaign, CampaignFilters } from './types'
@@ -29,10 +32,12 @@ const Campaigns = () => {
         status: campaignsStatus,
         message: 'Campaign Data Imported',
     })
+
     useFailedLoadingToast({
         status: campaignsStatus,
         message: campaignValidationError,
     })
+
     useFailedLoadingToast({
         status: campaignUsersStatus,
         message: 'User Fetch Failed',

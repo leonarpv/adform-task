@@ -8,7 +8,7 @@ export type Campaign = {
 }
 
 export type CampaignUser = {
-    id: string
+    id: number
     name: string
 }
 

@@ -49,7 +49,7 @@ const CampaignImport = ({ onImport }: Props) => {
                     <div className="campaign-import__actions">
                         <Button type="submit">Import</Button>
                         <Button type="button" onClick={closeModal} secondary>
-                            Cancel
+                            Close
                         </Button>
                     </div>
                 </form>

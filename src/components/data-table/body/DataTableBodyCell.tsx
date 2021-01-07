@@ -12,7 +12,9 @@ const DataTableBodyCell = <TSource extends {}>({
 }: Props<TSource>) => {
     const element = column.accessor(sourceEntry)
 
-    return <td className="data-table__cell data-table__cell--body">{element}</td>
+    return (
+        <td className="data-table__cell data-table__cell--body">{element}</td>
+    )
 }
 
 export default DataTableBodyCell

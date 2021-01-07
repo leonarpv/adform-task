@@ -3,41 +3,41 @@ import dayjs from 'dayjs'
 
 export const filterCampaigns = (
     campaigns: CampaignWithUser[],
-    filters?: CampaignFilters
+    filters: CampaignFilters = {}
 ) => {
-    let result = campaigns
-
-    if (!filters) {
-        return result
-    }
-
     const { startDate, endDate, name } = filters
 
-    if (name) {
-        result = result.filter((c) =>
-            c.name.toLowerCase().includes(name.toLocaleLowerCase())
-        )
-    }
+    const result = campaigns.filter((c) => {
+        const includesName =
+            !name || c.name.toLowerCase().includes(name.toLowerCase())
 
-    if (startDate) {
-        const filterStartDate = dayjs(startDate)
+        if (!includesName) {
+            return false
+        }
 
-        result = result.filter(
-            (c) =>
-                dayjs(c.startDate).isAfter(filterStartDate) ||
-                dayjs(c.endDate).isAfter(filterStartDate)
-        )
-    }
+        const campaignStartDate = dayjs(c.startDate)
+        const campaignEndDate = dayjs(c.endDate)
 
-    if (endDate) {
-        const filterEndDate = dayjs(endDate)
+        const endDateBeforeStart = campaignEndDate.isBefore(campaignStartDate)
 
-        result = result.filter(
-            (c) =>
-                dayjs(c.startDate).isBefore(filterEndDate) ||
-                dayjs(c.endDate).isBefore(filterEndDate)
-        )
-    }
+        if (endDateBeforeStart) {
+            return false
+        }
+
+        const filterStartDate = startDate && dayjs(startDate)
+        const filterEndDate = endDate && dayjs(endDate)
+
+        const startDateInRange =
+            (!filterStartDate ||
+                !campaignStartDate.isBefore(filterStartDate)) &&
+            (!filterEndDate || !campaignStartDate.isAfter(filterEndDate))
+
+        const endDateInRange =
+            (!filterStartDate || !campaignEndDate.isBefore(filterStartDate)) &&
+            (!filterEndDate || !campaignEndDate.isAfter(filterEndDate))
+
+        return startDateInRange || endDateInRange
+    })
 
     return result
 }
@@ -56,35 +56,27 @@ export const validateCampaignData = (value: unknown): string | undefined => {
             return `Invalid entry no. ${i + 1}`
         }
 
-        if (!entry.hasOwnProperty('id') || !entry.id) {
+        if (!entry.id) {
             return `Invalid entry no. ${i + 1}, missing property id`
         }
 
-        if (!entry.hasOwnProperty('name') || !entry.name) {
+        if (!entry.name) {
             return `Invalid entry no. ${i + 1}, missing property name`
         }
 
-        if (
-            !entry.hasOwnProperty('startDate') ||
-            !entry.startDate ||
-            !dayjs(entry.startDate).isValid()
-        ) {
+        if (!entry.startDate || !dayjs(entry.startDate).isValid()) {
             return `Invalid entry no. ${i + 1}, missing property startDate`
         }
 
-        if (
-            !entry.hasOwnProperty('endDate') ||
-            !entry.endDate ||
-            !dayjs(entry.endDate).isValid()
-        ) {
+        if (!entry.endDate || !dayjs(entry.endDate).isValid()) {
             return `Invalid entry no. ${i + 1}, missing property endDate`
         }
 
-        if (!entry.hasOwnProperty('Budget') || !entry.Budget) {
+        if (!entry.Budget) {
             return `Invalid entry no. ${i + 1}, missing property Budget`
         }
 
-        if (!entry.hasOwnProperty('userId') || !entry.userId) {
+        if (!entry.userId) {
             return `Invalid entry no. ${i + 1}, missing property userId`
         }
     }

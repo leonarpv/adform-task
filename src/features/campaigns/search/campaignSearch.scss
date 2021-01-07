@@ -3,10 +3,19 @@
 .campaign-search {
     padding: 30px;
 
+    &__content {
+        margin-right: 20px;
+    }
+
     &__date-pickers {
         & > * {
             margin-right: 15px;
         }
+    }
+
+    &__left-panel {
+        display: flex;
+        align-items: center;
     }
 
     &__inputs {

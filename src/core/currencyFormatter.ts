@@ -1,13 +1,15 @@
-export const getAmountString = (amount: number) => {
+const round = (number: number) => Math.round(number * 10) / 10
+
+const getAmountString = (amount: number) => {
     if (amount >= 1000000) {
-        return `${(amount / 1000000).toFixed(1)}M`
+        return `${round(amount / 1000000)}M`
     }
 
     if (amount >= 1000) {
-        return `${(amount / 1000).toFixed(1)}k`
+        return `${round(amount / 1000)}k`
     }
 
-    return amount.toString()
+    return round(amount).toString()
 }
 
 export const currencyFormatter = (amount: number, currency: string = 'USD') => {

@@ -32,14 +32,6 @@ const CampaignSearch = ({ children, filters, onChange }: Props) => {
         ? dayjs(filters.endDate).toDate()
         : undefined
 
-    const maxStartDate = filters?.endDate
-        ? dayjs(filters.endDate).subtract(1, 'day').toDate()
-        : undefined
-
-    const minEndDate = filters?.startDate
-        ? dayjs(filters.startDate).add(1, 'day').toDate()
-        : undefined
-
     return (
         <div className="campaign-search">
             <div className="campaign-search__inputs">
@@ -48,16 +40,22 @@ const CampaignSearch = ({ children, filters, onChange }: Props) => {
                     <Datepicker
                         label="Start Date"
                         isClearable
-                        maxDate={maxStartDate}
+                        maxDate={endDate}
                         selected={startDate}
+                        startDate={startDate}
+                        endDate={endDate}
                         onChange={handleStartDateChange}
+                        selectsStart
                     />
                     <Datepicker
                         label="End Date"
                         isClearable
-                        minDate={minEndDate}
+                        minDate={startDate}
                         selected={endDate}
+                        startDate={startDate}
+                        endDate={endDate}
                         onChange={handleEndDateChange}
+                        selectsEnd
                     />
                 </div>
 
